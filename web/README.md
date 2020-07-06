@@ -1,24 +1,5 @@
 # web
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 流程
+- npm i -D sass sass-loader
+- vue add router
+- "swiper": "^4.0.7", "vue-awesome-swiper": "^3.1.3" 老版本
