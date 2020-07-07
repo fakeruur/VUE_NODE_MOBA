@@ -10,6 +10,12 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/swiper-bundle.css'
 import 'swiper/dist/css/swiper.css'
 
+// 使用 axios
+import axios from 'axios'
+Vue.prototype.$http = axios.create({
+  baseURL:'http://localhost:3000/web/api'
+})
+
 
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 

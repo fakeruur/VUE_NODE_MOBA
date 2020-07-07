@@ -22,7 +22,8 @@
       </div>
     </div>
 
-    <router-view></router-view>
+    <router-view></router-view> 
+    <!-- :key="$route.path" -->
   </div>
   
 </template>
@@ -32,5 +33,11 @@ export default {};
 </script>
 
 
-<style>
+<style lang="scss" scoped>
+// css 实现吸顶效果
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 </style>

@@ -6,4 +6,9 @@ module.exports = app => {
     useNewUrlParser: true,
     useUnifiedTopology:true
   })
+
+
+  // 把文件引用一遍
+  const path = require('path')
+  require('require-all')(path.join(__dirname, '../', '/uploads'))
 }

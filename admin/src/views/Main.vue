@@ -75,7 +75,8 @@
       </el-header>
 
       <el-main>
-        <router-view></router-view>
+        <!-- 两个页面用了同一个组件，因此不能用路由的组件来区分，要用路由的路径来区分 -->
+        <router-view :key="$route.path"></router-view>
       </el-main>
     </el-container>
   </el-container>

@@ -32,6 +32,13 @@
       "font_class": "menu",
       "unicode": "e606",
       "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "12476288",
+      "name": "back",
+      "font_class": "fenxiang",
+      "unicode": "e516",
+      "unicode_decimal": 58646
     }
   ]
 }

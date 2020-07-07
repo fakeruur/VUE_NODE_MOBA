@@ -16,4 +16,6 @@
 - this.model = {...this.model,...res.data}; 扩展运算符
 - 富文本编辑器图片上传
 
-
+- 获取页面上的 新闻资讯 文本
+  - $$('.news_list .title')
+  - $$('.news_list .title').map(el => el.innerHTML)

@@ -22,6 +22,9 @@ require('./plugins/db')(app)
 //admin路由
 require('./routes/admin')(app)
 
+//web 路由
+require('./routes/web')(app)
+
 
 app.listen(3000, () => {
   console.log(`http://localhost:3000`)

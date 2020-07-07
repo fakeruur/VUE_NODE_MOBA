@@ -19,6 +19,9 @@ a {
   color: #999999;
 }
 
+p{
+  line-height: 1.5em;
+}
 // 颜色工具类class
 @each $colorKey, $color in $colors {
   .text-#{$colorKey} {
@@ -35,6 +38,14 @@ a {
   .text-#{$var} {
     text-align: $var !important;
   }
+}
+
+// text overflow
+.text-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 // 字体工具类class
@@ -159,5 +170,12 @@ a {
     width: 0.7692rem;
     height: 0.7692rem;
     background-position: 38.577% 52.076%;
+  }
+}
+
+// borders
+@each $dir in (top,right,bottom,left) {
+  .border-#{$dir}{
+    border-#{$dir}:1px solid $border-color;
   }
 }

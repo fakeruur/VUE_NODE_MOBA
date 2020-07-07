@@ -36,7 +36,7 @@ module.exports = app => {
     if (req.Model.modelName === 'Category') {
       queryOptions.populate = 'parent'
     }
-    const items = await req.Model.find().setOptions(queryOptions).limit(10)
+    const items = await req.Model.find().setOptions(queryOptions).limit(100)
     res.send(items)
   })
   //资源详情
@@ -56,6 +56,10 @@ module.exports = app => {
     next()
   }, router)
 
+
+
+
+  //两个独立路由 
 
   //上传图片的路由
   const path = require('path')
