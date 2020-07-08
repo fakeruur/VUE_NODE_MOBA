@@ -4,7 +4,7 @@ import './plugins/element.js'
 import router from './router'
 import axios from 'axios'
 
-import './assets/style.css'
+import './assets/style.scss'
 
 const http = axios.create({
   baseURL: 'http://localhost:3000/admin/api'

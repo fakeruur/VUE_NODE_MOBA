@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="container">
     <h1>{{id?'编辑':'新建'}}物品</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
       <!-- <el-form-item label="上级分类">

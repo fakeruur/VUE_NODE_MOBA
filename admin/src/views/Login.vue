@@ -32,7 +32,13 @@ export default {
       const res = await this.$http.post("login",this.model);
       //设置sessionStorage
       sessionStorage.token = res.data.token
-      this.$router.push('/')
+      // 使用路由 query  params传递参数
+      this.$router.push({
+        path:'/',
+        query:{
+          username:res.data.user.username
+        }
+      })
       this.$message({
         type:'success',
         message:`登录成功，欢迎用户: ${res.data.user.username}`

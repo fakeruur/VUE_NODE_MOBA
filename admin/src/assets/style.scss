@@ -21,3 +21,24 @@
   height: 5rem;
   display: block;
 }
+
+
+.el-container {
+  background: #f1f4f5;
+
+  .el-main {
+    .container {
+      min-height: calc(100% - 55px);
+      padding: 25px 30px;
+      background-color: #fff;
+      border: 1px solid #ebeef5;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+
+      > div > .el-tag {
+        margin: 8px 0;
+        width: 100%;
+      }
+    }
+  }
+}

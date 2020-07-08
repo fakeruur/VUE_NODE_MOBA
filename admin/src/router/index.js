@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Login from '../views/Login.vue'
 
+import Home from '../views/home/home.vue'
+
 import CategoryEdit from '../views/others/CategoryEdit.vue'
 import CategoryList from '../views/others/CategoryList.vue'
 
@@ -28,9 +30,11 @@ const routes = [
   { path: '/login', name: 'login', component: Login, meta: { isPublic: true } }, //可以公开访问
   {
     path: '/',
-    name: 'main',
     component: Main,
+    redirect:'/home',
     children: [
+      { path: '/home', component: Home },
+
       { path: '/categories/create', component: CategoryEdit },
       { path: '/categories/list', component: CategoryList },
       { path: '/categories/edit/:id', component: CategoryEdit, props: true },
