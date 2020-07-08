@@ -1,10 +1,14 @@
 <template>
-  <p>hello:{{$route.query.username}}</p>
+  <p>hello:{{admin}}</p>
 </template>
 
 <script>
 export default {
-
+data(){
+  return{
+    admin:this.$route.query.username
+  }
+}
 }
 </script>
 
