@@ -8,8 +8,9 @@
             v-for="item in parents"
             :key="item._id"
             :label="item.name"
-            :value="item._id"
+            :value="item._id" 
           ></el-option>
+          <!-- value为要保存的值 -->
         </el-select>
       </el-form-item>
 

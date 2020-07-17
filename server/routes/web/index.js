@@ -1,7 +1,6 @@
 module.exports = app => {
   const router = require('express').Router()
 
-  const mongoose = require('mongoose')
 
   const Hero = require('../../models/Hero')
   const Item = require('../../models/Item')

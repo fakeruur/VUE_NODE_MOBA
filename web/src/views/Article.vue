@@ -74,6 +74,5 @@ export default {
   flex-shrink: 0;
 }
 
-.article-body {
-}
+
 </style>

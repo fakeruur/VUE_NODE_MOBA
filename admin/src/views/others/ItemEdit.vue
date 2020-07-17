@@ -24,6 +24,9 @@
           :show-file-list="false"
           :on-success="afterUpload"
         >
+          <!-- 上传后显示在界面上 -->
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件</div>
+          <!-- v-if 用来防止不存在model.icon 时，后面绑定的icon使得vue报错 -->
           <img v-if="model.icon" :src="model.icon" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>

@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="container">
     <h1>管理员列表</h1>
     <el-table :data="items" stripe border>
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>

@@ -85,6 +85,7 @@ export default {
   },
   data() {
     return {
+      // 设置轮播图的 下方点和自动播放
       swiperOptions: {
         pagination: {
           el: ".swiper-pagination"
@@ -123,6 +124,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/variables";
+// 导入阿里图标
 @import "../assets/iconfont/iconfont.css";
 
 .pagination-home {
@@ -136,6 +138,8 @@ export default {
   }
 }
 
+
+// 雪碧图在 style.scss 中设置
 .nav-icons {
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;

@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Login from '../views/Login.vue'
 
-import Home from '../views/home/home.vue'
+// import Home from '../views/home/home.vue'
+const Home = ()=>import('../views/home/home.vue')
 
 import CategoryEdit from '../views/others/CategoryEdit.vue'
 import CategoryList from '../views/others/CategoryList.vue'
@@ -69,6 +70,7 @@ const router = new VueRouter({
 })
 
 // 导航守卫
+// meta 判断是否可以公开访问
 router.beforeEach((to,from,next)=>{
 if (!to.meta.isPublic && !window.sessionStorage.getItem('token')) {
   return next('/login')

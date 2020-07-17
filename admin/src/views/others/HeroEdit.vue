@@ -3,7 +3,6 @@
     <h1>{{id?'编辑':'新建'}}英雄</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-tabs value="basic" type="border-card">
-        
         <!-- 英雄信息 -->
         <el-tab-pane label="基本信息" name="basic">
           <el-form-item label="名称">
@@ -50,6 +49,7 @@
             </el-select>
           </el-form-item>
 
+          <!-- 打分 -->
           <el-form-item label="难度">
             <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.difficult"></el-rate>
           </el-form-item>
@@ -63,6 +63,7 @@
             <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.survive"></el-rate>
           </el-form-item>
 
+          <!-- items列表 -->
           <el-form-item label="顺风出装">
             <el-select v-model="model.items1" multiple>
               <el-option v-for="item of items" :key="item._id" :label="item.name" :value="item._id"></el-option>
@@ -86,6 +87,7 @@
         </el-tab-pane>
 
         <!-- 英雄技能 -->
+        <!-- 通过向技能列表中push技能对象，渲染添加技能的表单项，el-row布局 -->
         <el-tab-pane label="技能">
           <el-button size="small" @click="model.skills.push({})" style="margin:1rem">
             <i class="el-icon-plus"></i>添加技能
@@ -154,6 +156,7 @@
                 <el-input type="textarea" v-model="item.description" :rows="3"></el-input>
               </el-form-item>
 
+              <!-- 删除 -->
               <el-form-item>
                 <el-button size="small" type="danger" @click="model.partners.splice(i,1)">删除</el-button>
               </el-form-item>
@@ -162,7 +165,7 @@
         </el-tab-pane>
       </el-tabs>
 
-
+      <!-- 保存上传表单 -->
       <el-form-item style="margin-top:2rem">
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -177,9 +180,13 @@ export default {
   },
   data() {
     return {
+      // 父级分类
       categories: [],
+      // 装备
       items: [],
+      // 英雄
       heroes: [],
+      // 新建英雄对象
       model: {
         name: "",
         avatar: "",
@@ -200,7 +207,7 @@ export default {
     },
     async save() {
       console.log(this.model.partners);
-      
+
       let res;
       if (this.id) {
         res = await this.$http.put(`rest/heroes/${this.id}`, this.model);
@@ -215,7 +222,9 @@ export default {
     },
     async fetch() {
       const res = await this.$http.get(`rest/heroes/${this.id}`);
-      // this.model = Object.assign({},this.model.res.data) //防止服务器端数据完全替换本地数据
+      // this.model = Object.assign({},this.model,res.data) 
+      //防止服务器端数据完全替换本地数据，因为有的属性开始在服务端不存在，直接赋值会覆盖本地，产生报错
+      // 合并具有相同属性的对象
       this.model = { ...this.model, ...res.data };
     },
 

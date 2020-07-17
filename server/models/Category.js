@@ -18,5 +18,5 @@ schema.virtual('newsList',{
   justOne:false,
   ref:'Article'
 })
-
+// ('Category', schema,'')
 module.exports = mongoose.model('Category', schema)

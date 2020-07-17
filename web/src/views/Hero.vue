@@ -38,9 +38,10 @@
     <!-- end of top -->
 
     <div>
-
+      <!-- swiper 导航栏 -->
       <div class="bg-white px-3">
         <div class="nav d-flex jc-around pt-3 pb-2 border-bottom">
+          <!-- 根据swiper的active的index，设置导航栏的标签active -->
           <div class="nav-item active">
             <div class="nav-link">英雄初识</div>
           </div>
@@ -50,18 +51,21 @@
         </div>
       </div>
 
+      <!-- 两个swiper-slide -->
       <swiper>
+        <!-- 第一个 -->
         <swiper-slide>
           <div>
             <div class="p-3 bg-white border-bottom">
               <div class="d-flex">
+                <!-- 不同组件 -->
                 <router-link tag="button" to="/" class="btn btn-lg flex-1">
                   <i class="iconfont icon-menu1"></i>
                   英雄介绍视频
                 </router-link>
                 <router-link tag="button" to="/" class="btn btn-lg flex-1 ml-2">
                   <i class="iconfont icon-menu1"></i>
-                  英雄介绍视频
+                  一眼识英雄
                 </router-link>
               </div>
 
@@ -77,6 +81,7 @@
                     :key="item.name"
                   />
                 </div>
+                <!-- 用技能的索引 i ，通过v-if来觉得渲染 -->
                 <div v-if="currentSkill">
                   <div class="d-flex pt-4 pb-3">
                     <h3 class="m-0">{{currentSkill.name}}</h3>
@@ -135,14 +140,14 @@
 </template>
 
 <script>
-import mCard from '../components/Card'
+import mCard from "../components/Card";
 
 export default {
-  components:{
+  components: {
     mCard
   },
   props: {
-    id: { required: true },
+    id: { required: true }
   },
   data() {
     return {
@@ -150,6 +155,8 @@ export default {
       currentSkillIndex: 0
     };
   },
+  // computed用来监控自己定义的变量，该变量不在data里面声明，直接在computed里面定义，然后就可以在页面上进行双向数据绑定展示出结果或者用作其他处理；
+  // computed比较适合对多个变量或者对象进行处理后返回一个结果值，也就是数多个变量中的某一个值发生了变化则我们监控的这个值也就会发生变化，举例：购物车里面的商品列表和总金额之间的关系，只要商品列表里面的商品数量发生变化，或减少或增多或删除商品，总金额都应该发生变化。这里的这个总金额使用computed属性来进行计算是最好的选择
   computed: {
     currentSkill() {
       return this.model.skills[this.currentSkillIndex];

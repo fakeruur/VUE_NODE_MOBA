@@ -1,3 +1,4 @@
+// 定义css变量
 
 // 定义colors 变量
 $colors: (
@@ -17,6 +18,7 @@ $colors: (
   "black": #000,
 );
 
+// 设置边框颜色
 $border-color:map-get($colors, 'light-1' );
 
 // font-size

@@ -1,7 +1,9 @@
 <template>
   <div class="login-container">
     <el-card header="请先登录" class="login-card">
-      <el-form @submit.native.prevent="login">
+
+      <!-- 登录表单 -->
+      <el-form  ref="loginFormRef" :model="model">
         <el-form-item label="用户名" label-width="70px">
           <el-input v-model="model.username"></el-input>
         </el-form-item>
@@ -12,8 +14,8 @@
 
 <!-- //@click="restloginForm" -->
         <el-form-item>
-          <el-button type="primary" round native-type="submit" style="margin-left:15rem">登录</el-button>
-          <el-button type="info" round >重置</el-button> 
+          <el-button type="primary" round @click="login" style="margin-left:15rem">登录</el-button>
+          <el-button type="info" round @click="restLoginFrom">重置</el-button> 
         </el-form-item>
       </el-form>
     </el-card>
@@ -24,7 +26,10 @@
 export default {
   data() {
     return {
-      model: {}
+      model: {
+        username:'',
+        password:''
+      }
     };
   },
   methods: {
@@ -44,6 +49,10 @@ export default {
         message:`登录成功，欢迎用户: ${res.data.user.username}`
       })
       
+    },
+    restLoginFrom(){
+      this.model.username = ''
+      this.model.password = ''
     }
   }
 };

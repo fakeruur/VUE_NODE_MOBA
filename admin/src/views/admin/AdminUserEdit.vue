@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="container ">
     <h1>{{id?'编辑':'新建'}}管理员</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="用户名">
@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  // 列表编辑时通过,:id 类似params传送的参数
   props: {
     id: {}
   },

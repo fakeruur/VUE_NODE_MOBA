@@ -135,7 +135,7 @@ export default {
     color: #fff;
   }
   .el-menu {
-    border: none;
+    border-right: none;
   }
 }
 

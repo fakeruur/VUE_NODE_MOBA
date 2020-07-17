@@ -9,6 +9,7 @@ app.set('secret','lihui##$$%%123')
 app.use(require('cors')())
 
 //json
+// 处理post data，直接f赋值给body---解析json格式
 app.use(express.json())
 
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use('/uploads',express.static(path.join(__dirname, '/uploads')))
 
 
+//注册路由
 //链接db
 require('./plugins/db')(app)
 
@@ -24,6 +26,12 @@ require('./routes/admin')(app)
 
 //web 路由
 require('./routes/web')(app)
+
+
+// //未找到路由，404错误处理
+// app.use(async(req,res,next)=>{
+//   res.status(404).send('404,您访问的路由不存在！')
+// })
 
 
 app.listen(3000, () => {

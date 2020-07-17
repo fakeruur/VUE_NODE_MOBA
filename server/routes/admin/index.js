@@ -2,8 +2,7 @@ module.exports = app => {
   const express = require('express')
   // 用来生成token
   const jwt = require('jsonwebtoken')
-  // 用户模型
-  const AdminUser = require('../../models/AdminUser')
+
   // assert 断言模块 模块引入http-assert可以抛出错误处理信息
   const assert = require('http-assert')
 
@@ -13,17 +12,17 @@ module.exports = app => {
     mergeParams: true
   })
 
-  //新建分类
+  //新建
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body)
     res.send(model)
   })
-  //编辑分类
+  //编辑
   router.put('/:id', async (req, res) => {
     const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
     res.send(model)
   })
-  //删除分类
+  //删除
   router.delete('/:id', async (req, res) => {
     await req.Model.findByIdAndDelete(req.params.id, req.body)
     res.send({
@@ -33,7 +32,9 @@ module.exports = app => {
   //资源列表
   router.get('/', async (req, res) => {
     const queryOptions = {}
+    // 获取分类
     if (req.Model.modelName === 'Category') {
+      // 如果是category项，一并获取父级分类
       queryOptions.populate = 'parent'
     }
     const items = await req.Model.find().setOptions(queryOptions).limit(100)
@@ -50,7 +51,9 @@ module.exports = app => {
 
   //动态路径
   app.use('/admin/api/rest/:resource', authMiddleware(), async (req, res, next) => {
-    //小写负数单词转换为大写开头的单数
+    // 根据请求路径动态选择模型
+    // 这个过程相当于一个中间件
+    //小写复数单词转换为大写开头的单数
     const modelName = require('inflection').classify(req.params.resource)
     req.Model = require(`../../models/${modelName}`)
     next()
@@ -65,15 +68,21 @@ module.exports = app => {
   const path = require('path')
   //上传文件路由
   const multer = require('multer')
-  //绝对地址
+  //绝对地址，设置文件存储路径
   const upload = multer({ dest: path.join(__dirname, '../../', '/uploads') })
-
+  // single单个文件(表单name属性)
+  //array("表单name属性","这里填写最大支持的文件数目")
   app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     const file = req.file
+    // 设置返回的图片的服务端路径
     file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
   })
 
+
+
+  // 用户模型
+  const AdminUser = require('../../models/AdminUser')
 
   //登录路由
   app.use('/admin/api/login', async (req, res) => {
@@ -90,7 +99,7 @@ module.exports = app => {
     // 比较明文和密文
     const isVaild = require('bcryptjs').compareSync(password, user.password)
     assert(isVaild, 422, '密码错误')
-    // 3.返回token
+    // 3.设置token
     const token = jwt.sign({ id: user._id }, app.get('secret')) // 根据用户id生成token
     res.send({ token, user })
   })

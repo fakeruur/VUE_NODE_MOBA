@@ -17,7 +17,6 @@ http.interceptors.request.use(function (config) {
     // 把token赋值给headers，给服务端判断是否登录
     config.headers.Authorization = 'Bearer ' + sessionStorage.token //规范 前端Authorization大写
   }
-
   return config;
 }, function (error) {
   // Do something with request error
